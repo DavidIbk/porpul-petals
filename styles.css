@@ -1,0 +1,192 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+main{
+  font-family: "Heebo", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.landing{
+  min-height: 100vh;
+  background-image: url("https://images2.imgbox.com/86/aa/UkMwwTHc_o.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 5rem;
+}
+
+/* https://images2.imgbox.com/c5/85/3Fus38dU_o.jpg */
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 10vh;
+}
+
+.nav-links{
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li{
+  padding-left: 10rem;
+  font-size: 1.2rem;
+}
+
+#logo{
+  font-family: "Lobster Two";
+  font-weight: lighter;
+  font-size: 2rem;
+}
+
+.burger{
+  display: none;
+}
+
+.burger div{
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 5px;
+  transition: 0.5s ease;
+}
+
+
+.big-text{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  font-size: 2rem;
+  font-family: "Lobster Two";
+}
+
+.intro{
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider{
+  background: #A45EE5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+}
+
+.intro-text{
+  color: aliceblue;
+  font-family: "Heebo", sans-serif;
+  font-size: 1.8rem;
+}
+
+.hide{ /*to hide the text i.e. intro-text*/
+  background: #000;
+  overflow: hidden; /* second, this overflow hidden hides everything that is not where it is supposed to be. Get the logic?*/
+}
+
+.hide span{
+  transform: translateY(100%);
+  display: inline-block; /* first, these two properties here hide the intro-text by moving it 100% below where it should be */
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 968px) {
+  body{
+    overflow-x: hidden; /*this hides away the dropdown that overflows the screen to the right on the x-axis (horizontal axis)*/
+  }
+
+  nav #logo {
+    width: 70%;
+  }
+
+  .nav-links{
+    position: absolute;
+    right: 0;
+    height: 80vh;
+    width: 100%; /*creates the width of the dropdown*/
+    margin-top: 0; /*ensures that there is no spacing between the dropdown and the navbar above it*/
+    top: 12vh; /*This carries the dropdown up and down vertically. It should correspond to min-height used for the nav */
+    background-color: #fff;
+    color: #A45EE5;
+    padding: 0;
+    display: flex; /*serves as a pre-creator to the dropdown*/
+    flex-direction: column; /*creates the dropdown*/
+    align-items: right; /*This makes our navlinks and buttton come to the center of the dropdown*/
+    justify-content: space-around;
+    min-height: 20px;
+    transform: translateX(-100%); /*this moves the whole dropdown off the screen*/
+    transition: transform 0.5s ease-in; /*This transitions the transform. That is, the dropdown leaves the screen gradually and not at once*/
+    z-index: 20; /*This makes the dropdown to be above everything on screen*/ /*apparently, this doesn't work. our dropdown works with the z-index of .nav and not .nav-links*/
+}
+  .nav-links li{
+    opacity: 0; /*this modifies our dropdown such that at first the links and butttons are not seen, before they slowly appear*/
+  }
+
+  .burger{
+    display: inline; /*This makes our burger icon reappear after the dropdown has been removed*/
+  }
+
+  .big-text{
+    font-size: 1.5rem;
+  }
+
+  .intro-text{
+    font-size: 1rem;
+  }
+}
+
+.nav-active{ /*note that this class is only activated by javascript*/
+  transform: translateX(0%); /*when we click on the burger, the navigation should get the zero transform, that is it comes onscreen*/
+}
+
+@keyframes navLinkFade {  /* Animation for our links inside our navbar dropdown. Used inside Javascript */
+  from{
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+ /* Animating our burger NOTE: FOLLOW THE SYNTAX HERE RELIGIOUSLY!*/
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px,6px); /*while the rotate(45deg) tries to rotate the line, the translate function has some impact on it that I don't understand but which causes it not to rotate */
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px,-6px);
+}
